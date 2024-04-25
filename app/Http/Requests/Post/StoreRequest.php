@@ -11,18 +11,20 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|min:3|max:250',
+            'content' => 'required|string|min:3|max:6000',
+            'featured_image' => 'required|image|max:1024|mimes:jpg,jpeg,png',
         ];
     }
 }
